@@ -5,11 +5,11 @@ import threading
 from djitellopy import tello
 
 
-a=50
+# a=50
 
 dollah = tello.Tello()
-# dollah.connect()
-# a = dollah.get_battery()
+dollah.connect()
+a = dollah.get_battery()
 
 # print()
 sg.theme('DarkPurple1')
