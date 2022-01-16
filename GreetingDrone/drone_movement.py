@@ -8,7 +8,7 @@ import cv2
 #     return isMoving
 
 def moveDrone(drone):
-    
+
     # Use statement below when testing at home
     print("Weehee I'm flying!")
 
@@ -58,4 +58,4 @@ def pathTwo(drone):
     sleep(2)
     drone.rotate_clockwise(180)
     # drone.move_down(50)
-    drone.land();
+    drone.land()

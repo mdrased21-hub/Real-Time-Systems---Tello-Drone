@@ -80,6 +80,7 @@ def gesture(tello_drone):
             # START: TELLO DRONE MOVEMENT
             # //
             if not t1.is_alive():
+                t1 = threading.Thread(target=drone.moveDrone, args=(tello_drone,))
                 t1.start()
             # //
             # END: TELLO DRONE MOVEMENT
