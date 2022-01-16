@@ -2,15 +2,15 @@ from djitellopy import tello
 from time import sleep
 import cv2
 
+
 # isMoving = False
 
 # def isMoving():
 #     return isMoving
 
-def moveDrone(drone):
-
+def path_one(drone):
     # Use statement below when testing at home
-    print("Weehee I'm flying!")
+    print("Weehee I'm flying to Path One!")
 
     drone.takeoff()
     drone.move_up(50)  # avoid tables and people
@@ -35,7 +35,7 @@ def moveDrone(drone):
     drone.move_down(50)
     drone.land();
 
-    #reverse code
+    # reverse code
 
     sleep(2)
 
@@ -58,10 +58,9 @@ def moveDrone(drone):
     drone.land();
 
 
-def pathTwo(drone):
-
+def path_two(drone):
     # Use statement below when testing at home
-    print("Weehee I'm flying!")
+    print("Weehee I'm flying to Path Two!")
 
     drone.takeoff()
     drone.move_up(50)  # avoid tables and people
@@ -82,7 +81,7 @@ def pathTwo(drone):
     # drone.move_down(50)
     drone.land()
 
-    #reverse code
+    # reverse code
     sleep(2)
 
     drone.takeoff()

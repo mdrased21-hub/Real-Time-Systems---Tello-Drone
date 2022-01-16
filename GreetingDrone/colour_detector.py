@@ -3,7 +3,8 @@
 # import numpy as np
 import cv2
 import numpy as np
-import drone_movement as drone
+import drone
+import drone_movement as movements
 from djitellopy import tello
 import threading
 from time import sleep
@@ -41,8 +42,7 @@ def checkForColour(pixel_center, h_lower, h_higher, s_lower, s_higher, v_lower, 
 
 
 def color(tello_drone):
-    t1 = threading.Thread(target=drone.moveDrone, args=(tello_drone,))
-    t2 = threading.Thread(target=drone.pathTwo, args=(tello_drone,))
+    # drone.thread = threading.Thread(target=drone.path_one, args=(tello_drone,))
 
     # SETUP CAMERA
     capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -160,8 +160,9 @@ def color(tello_drone):
             cv2.circle(frame_Og, (cx, cy), 25, (255, 255, 255), 3)
             cv2.circle(result_BLUE, (cx, cy), 15, (255, 255, 255), 3)
             cv2.circle(result_BLUE, (cx, cy), 25, (255, 255, 255), 3)
-            # if not t1.is_alive() and not t2.is_alive():
-            #     t1.start()
+            if not drone.thread.is_alive():
+                drone.thread = threading.Thread(target=movements.path_one, args=(tello_drone,))
+                drone.thread.start()
 
         if checkForColour(pixel_center, h_RED_lower, h_RED_higher, s_RED_lower, s_RED_higher, v_RED_lower, v_RED_higher):
             print("----------RED COLOUR DETECTED----------")
@@ -169,8 +170,9 @@ def color(tello_drone):
             cv2.circle(frame_Og, (cx, cy), 25, (255, 255, 255), 3)
             cv2.circle(result_RED, (cx, cy), 15, (255, 255, 255), 3)
             cv2.circle(result_RED, (cx, cy), 25, (255, 255, 255), 3)
-            # if not t1.is_alive() and not t2.is_alive():
-            #     t2.start()
+            if not drone.thread.is_alive():
+                drone.thread = threading.Thread(target=movements.path_two, args=(tello_drone,))
+                drone.thread.start()
 
 
 

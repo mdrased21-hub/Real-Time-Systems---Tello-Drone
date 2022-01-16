@@ -1,13 +1,14 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-import drone_movement as drone
+import drone
+import drone_movement as movements
 import threading
 from tensorflow.keras.models import load_model
 
 
 def gesture(tello_drone):
-    t1 = threading.Thread(target=drone.moveDrone, args=(tello_drone,))
+    # drone.thread = threading.Thread(target=drone.path_one, args=(tello_drone,))
 
     # initialize mediapipe
     mpHands = mp.solutions.hands
@@ -75,16 +76,24 @@ def gesture(tello_drone):
         cv2.imshow("Output", frame)
 
         if className=='okay':
-            # if not(drone.isMoving()):
-            print("----------GESTURE DETECTED----------")
+            print("----------OKAY GESTURE DETECTED----------")
             # START: TELLO DRONE MOVEMENT
             # //
-            if not t1.is_alive():
-                t1 = threading.Thread(target=drone.moveDrone, args=(tello_drone,))
-                t1.start()
+            if not drone.thread.is_alive():
+                drone.thread = threading.Thread(target=movements.path_one, args=(tello_drone,))
+                drone.thread.start()
             # //
             # END: TELLO DRONE MOVEMENT
-            # break
+
+        if className=='peace':
+            print("----------PEACE GESTURE DETECTED----------")
+            # START: TELLO DRONE MOVEMENT
+            # //
+            if not drone.thread.is_alive():
+                drone.thread = threading.Thread(target=movements.path_two, args=(tello_drone,))
+                drone.thread.start()
+            # //
+            # END: TELLO DRONE MOVEMENT
 
         # if cv2.waitKey(1) == ord('q') or className=='smile':
         if cv2.waitKey(1) == ord('q'):
