@@ -3,22 +3,18 @@ import colour_detector as colorDetect
 import gestures as gestureDetect
 import threading
 import drone
-# import drone_movement as movements
 
-a=50
+# a=50
 
 
 sg.theme('DarkPurple1')
 
 layout = [[sg.Text("Welcome, you will be greeted by our drone")],
-          [sg.Text("Drone Battery Percentage "+str(a)+"%")],
+          [sg.Text("Drone Battery Percentage "+str(drone.a)+"%")],
           [sg.Button('Color Recognition')],
           [sg.Button('Gesture Recognition')],
           [sg.Cancel()]]
 window = sg.Window('Event Greeter', layout, size=(480,320))
-
-# t1 = threading.Thread(target=colorDetect.color, args=(dollah,))
-# t2 = threading.Thread(target=gestureDetect.gesture, args=(dollah,))
 
 while True:
     event, values = window.read()

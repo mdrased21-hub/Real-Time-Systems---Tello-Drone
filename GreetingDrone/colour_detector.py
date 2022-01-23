@@ -53,7 +53,8 @@ def color(tello_drone):
 
     # LIST OF ALL COLOR PICKER PRESET
     blue = [[94, 80, 2], [126, 255, 255]]
-    red = [[161, 155, 84], [179, 255, 255]]
+    # red = [[155, 25, 0], [179, 255, 255]]
+    red = [[0, 144, 29], [2, 255, 255]]
 
     # Create slider for fine tune colour
     cv2.namedWindow("Colour Picker Blue", cv2.WINDOW_FREERATIO)
